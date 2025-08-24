@@ -1,0 +1,81 @@
+.app-container {
+  width: 100vw;
+  min-height: 100vh;
+  margin-top: 10vh;
+  margin-left: 60px;
+}
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+
+}
+
+.app-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.todo-title {
+  position: absolute;
+  top: 40%;            /* centraliza verticalmente sobre a imagem */
+  left: 70%;           /* centraliza horizontalmente */
+  transform: translate(-50%, -50%);
+  color: #f36ec7;      /* bom contraste sobre a imagem */
+  font-size: 3rem;
+  text-align: center;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6); /* destaca sobre a imagem */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* src/Styles/index.css */
+button {
+  position: absolute;   /* posiciona em relação ao container pai */
+  top: 60vh;            /* distância do topo da tela */
+  left: 70%;            /* centraliza horizontalmente */
+  transform: translateX(-50%); /* corrige centralização */
+  width: 20%;
+  height: 6dvh;
+  background-color: #ae9add; 
+  color: white; 
+  border: none; 
+  padding: 12px 24px; 
+  font-size: 16px; 
+  font-weight: bold;
+  border-radius: 20px; 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+}
+
+/* Efeito ao passar o mouse */
+button:hover {
+  background-color: #510f69; 
+  transform: translateX(-50%) scale(1.05); /* mantém centralizado ao ampliar */
+}
+
+/* Ícone pulsante */
+.top-icon {
+  position: absolute;
+  top: 190px;
+  left: 60%;
+  font-size: 40vh;
+  transform: translateX(-50%);
+  color: #f8cffa;
+
+
+  /* Animação de pulso */
+  animation: pulse 2s infinite;
+}
+
+/* Keyframes da animação */
+@keyframes pulse {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.15); /* cresce 15% */
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+}
