@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import {  HashRouter  as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import '../Styles/index.css';
 import Abertura from '../assets/foto22.avif';
 import TodoList from '../Components/TodoList';
