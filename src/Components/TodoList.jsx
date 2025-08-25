@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Styles/todoIten.css";
+import "../Styles/todoList.css";
 import Foto from "../assets/foto-de-fundo.png";
 
 export default function TodoIten() {
