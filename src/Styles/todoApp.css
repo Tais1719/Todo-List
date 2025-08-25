@@ -1,0 +1,52 @@
+/* Seu código original mantido - apenas adicionando animação flutuante para o ícone */
+
+.app-container {
+  width: 100vw;
+  min-height: 100vh;
+  margin-top: 2vh;
+  margin-left: 60px;
+}
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.app-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.todo-title {
+  position: absolute;
+  top: 40%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  color: #f36ec7;
+  font-size: 2.5rem;
+  text-align: center;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.botao1 {
+  position: absolute;
+  top: 60vh;
+  left: 70%;
+  transform: translateX(-50%);
+  width: 20%;
+  height: 6dvh;
+  background-color: #56ced6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #b8e2ec;
+}

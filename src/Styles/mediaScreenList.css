@@ -1,0 +1,462 @@
+
+/* FORÇAR LAYOUT VERTICAL COM IMAGEM PRIMEIRO */
+@media screen and (max-width: 900px) {
+  .todo-container {
+    flex-direction: column !important;
+    align-items: center;
+  }
+  
+  .todo-left {
+    order: -10 !important;
+    flex: none !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .todo-right {
+    order: 10 !important;
+    flex: none !important;
+    width: 100%;
+  }
+  
+  .image-placeholder {
+    position: static !important;
+    margin-top: 0 !important;
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+  }
+}
+
+/* Tablets em modo retrato */
+@media screen and (max-width: 768px) {
+  .todo-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin: 15px auto;
+  }
+  
+  .todo-left {
+    order: -1;
+    flex: none;
+  }
+  
+  .todo-right {
+    order: 1;
+  }
+  
+  .image-placeholder {
+    position: static;
+    margin-top: 0;
+    width: 100%;
+    max-width: none;
+  }
+  
+  .todo-right h1 {
+    font-size: 1.8rem;
+  }
+  
+  .add-btn {
+    
+     margin-top: 150px;
+    left: 32vh; /* ← LINHA DO BOTÃO ADD - POSIÇÃO HORIZONTAL */
+  }
+  
+  .complete-btn {
+    margin-left: 6vh;
+    width: 150px;
+  }
+  
+  .delete-btn {
+    margin-left: 12vh;
+    width: 150px;
+  }
+  
+  .task-section {
+    min-width: 200px;
+  }
+  
+  .back-top-btn {
+    left: 200px;
+    bottom: 150px;
+    width: 200px;
+  }
+}
+/* Smartphones grandes */
+@media screen and (max-width: 640px) {
+  .todo-container {
+    flex-direction: column;
+    width: 95%;  /* usa quase toda a largura da tela */
+    margin: 0 auto; /* centraliza o container */
+  }
+
+  .image-placeholder {
+    position: static;
+    margin-top: 0;
+    width: 100%;
+    max-width: none;
+  }
+
+  .add-btn {
+    padding: 2px;
+    top: 29vh;
+    margin-left: 12vh;
+  }
+
+  .complete-btn {
+    position: relative;
+    width: 120px;
+    height: 35px;
+    font-size: 12px;
+  }
+
+  .delete-btn {
+    position: relative;
+    left: 10vh;
+    width: 120px;
+    height: 35px;
+    font-size: 12px;
+  }
+
+  .tasks-container {
+    gap: 15px;
+  }
+
+  .back-top-btn {
+    position: absolute;
+  }
+}
+
+
+
+/* Smartphones médios */
+@media screen and (max-width: 480px) {
+  .todo-container {
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .todo-left {
+    order: -1;
+    flex: none;
+  }
+  
+  .todo-right {
+    order: 1;
+    padding: 15px;
+  }
+  
+  .image-placeholder {
+    position: static;
+    margin-top: 0;
+    width: 100%;
+    max-width: none;
+    height: 200px;
+  }
+  
+  .todo-right h1 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  
+  .input-section input {
+    padding: 12px 100px 12px 12px;
+    font-size: 14px;
+  }
+  
+  .add-btn {
+    margin-top: 120px;
+    left: 32vh; /* ← LINHA DO BOTÃO ADD - POSIÇÃO HORIZONTAL */
+    width: 80px;
+    height: 45px;
+    font-size: 12px;
+  }
+  
+  .complete-btn {
+    margin-left: 2vh;
+    width: 100px;
+    height: 32px;
+    font-size: 11px;
+  }
+  
+  .delete-btn {
+    margin-left: 6vh;
+    width: 100px;
+    height: 32px;
+    font-size: 11px;
+  }
+  
+  .task-section {
+    padding: 12px;
+    min-height: 150px;
+  }
+  
+  .section-title {
+    font-size: 1rem;
+  }
+  
+  .todo-list li {
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .back-top-btn {
+    left: 100px;
+    bottom: 80px;
+    width: 150px;
+    height: 40px;
+    font-size: 13px;
+  }
+}
+
+/* Smartphones pequenos */
+@media screen and (max-width: 360px) {
+  .todo-container {
+    flex-direction: column;
+    padding: 8px;
+    margin: 5px auto;
+  }
+  
+  .todo-left {
+    order: -1;
+    flex: none;
+  }
+  
+  .todo-right {
+    order: 1;
+    padding: 12px;
+  }
+  
+  .image-placeholder {
+    position: static;
+    margin-top: 0;
+    width: 100%;
+    max-width: none;
+  }
+  
+  .add-btn {
+    left: 30vh; /* ← LINHA DO BOTÃO ADD - POSIÇÃO HORIZONTAL */
+    width: 70px;
+    height: 40px;
+    font-size: 11px;
+  }
+  
+  .complete-btn, .delete-btn {
+    margin-left: 1vh;
+    width: 80px;
+    height: 30px;
+    font-size: 10px;
+  }
+  
+  .delete-btn {
+    margin-left: 4vh;
+  }
+  
+  .back-top-btn {
+    left: 80px;
+    bottom: 60px;
+    width: 120px;
+    height: 35px;
+    font-size: 12px;
+  }
+  
+  .stats {
+    padding: 8px;
+  }
+  
+  .stat-item {
+    font-size: 11px;
+  }
+}
+/* ===== RESPONSIVIDADE - MEDIA QUERIES ===== */
+
+/* Tablets e telas médias */
+@media (max-width: 1024px) {
+  .todo-container {
+    gap: 30px;
+    padding: 25px;
+  }
+  
+  .todo-right h1 {
+    font-size: 2rem;
+  }
+  
+  .task-section {
+    min-width: 240px;
+  }
+}
+
+/* Tablets em modo retrato e smartphones grandes */
+@media (max-width: 768px) {
+  .todo-container {
+    flex-direction: column; /* empilha colunas */
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .todo-left, .todo-right {
+    width: 100%;
+    flex: none;
+  }
+  
+  .image-placeholder {
+    max-width: 100%;
+    height: 250px;
+    margin-bottom: 20px;
+  }
+  
+  .todo-right h1 {
+    font-size: 1.8rem;
+  }
+  
+  .task-section {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .complete-btn, .delete-btn {
+    width: 48%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+  
+  .back-top-btn {
+    width: 90%;
+    max-width: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100px;
+  }
+}
+
+/* Smartphones médios */
+@media (max-width: 480px) {
+  .todo-container {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .image-placeholder {
+    height: 200px;
+  }
+  
+  .todo-right h1 {
+    font-size: 1.5rem;
+  }
+  
+  .task-section {
+    padding: 12px;
+  }
+  
+  .complete-btn, .delete-btn {
+    width: 100px;
+    height: 32px;
+    font-size: 11px;
+  }
+  
+  .back-top-btn {
+    width: 120px;
+    height: 40px;
+    bottom: 80px;
+  }
+}
+
+/* Smartphones pequenos */
+@media (max-width: 360px) {
+  .task-section {
+    padding: 10px;
+  }
+  
+  .complete-btn, .delete-btn {
+    width: 80px;
+    height: 30px;
+    font-size: 10px;
+  }
+  
+  .back-top-btn {
+    width: 100px;
+    height: 35px;
+    bottom: 60px;
+  }
+}
+
+/* Smartphones muito pequenos */
+@media (max-width: 320px) {
+  .todo-container {
+    padding: 8px;
+  }
+  
+  .task-section {
+    padding: 8px;
+  }
+  
+  .complete-btn, .delete-btn {
+    width: 70px;
+    height: 28px;
+    font-size: 9px;
+  }
+  
+  .back-top-btn {
+    width: 90px;
+    height: 32px;
+    bottom: 50px;
+  }
+}
+/* ===== RESPONSIVIDADE PARA NOTEBOOKS ===== */
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+  .todo-container {
+    display: flex; /* mantém em duas colunas */
+    flex-direction: row;
+    width: 95%;
+    margin: 40px auto;
+    gap: 30px;
+    padding: 25px;
+  }
+
+  .todo-left {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .todo-right {
+    flex: 2;
+    padding: 25px;
+  }
+
+  .todo-right h1 {
+    font-size: 2rem;
+  }
+
+  .add-btn {
+    position: relative; /* remove a posição fixa exagerada */
+    left: auto;
+    top: auto;
+    margin-top: 10px;
+    width: 150px;
+    height: 50px;
+  }
+
+  .complete-btn, .delete-btn {
+    width: 48%;
+    margin: 10px 1%;
+    display: inline-block;
+  }
+
+  .back-top-btn {
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+  }
+
+  .image-placeholder {
+    position: relative;
+    margin: 0 auto;
+    width: 80%;
+    height: 280px;
+  }
+}

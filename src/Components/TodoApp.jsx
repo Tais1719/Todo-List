@@ -1,5 +1,6 @@
 import {  HashRouter  as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import '../Styles/index.css';
+import '../Styles/todoApp.css';
+import '../Styles/mediaScreenApp.css'
 import Abertura from '../assets/foto22.avif';
 import TodoList from '../Components/TodoList';
 import { Rocket } from '@phosphor-icons/react';
