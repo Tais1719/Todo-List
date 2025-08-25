@@ -17,7 +17,7 @@ function Home() {
 
       <img src={Abertura} alt="Todo List" className="app-image" />
       <h1 className="todo-title">Organize Seu Dia com Nossa Todo List</h1>
-      <button onClick={() => navigate('/todoiten')}>Vamos começar</button>
+      <button className='botao1' onClick={() => navigate('/todoiten')}>Vamos começar</button>
     </div>
   );
 }
