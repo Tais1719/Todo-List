@@ -1,74 +1,116 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Styles/todoList.css";
+import "../Styles/todoList.css"; // Seu CSS
 import '../Styles/mediaScreenList.css'
-
 import Foto from "../assets/foto-de-fundo.png";
 
 export default function TodoIten() {
-  // Inicializa tasks a partir do localStorage
   const [tasks, setTasks] = useState(() => {
-    const storedTasks = localStorage.getItem("tasks");
-    return storedTasks ? JSON.parse(storedTasks) : [];
+    const stored = localStorage.getItem("tasks");
+    return stored ? JSON.parse(stored) : [];
   });
   const [newTask, setNewTask] = useState("");
-  const [selectedTasks, setSelectedTasks] = useState([]);
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState("");
   const navigate = useNavigate();
 
-  // Salva no localStorage sempre que tasks mudar
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   const addTask = () => {
-    if (!newTask.trim()) return;
-    const task = { text: newTask, completed: false, id: Date.now() };
-    setTasks(prev => [...prev, task]);
+    const text = newTask.trim();
+    if (!text) return;
+    setTasks(prev => [...prev, { id: Date.now(), text, completed: false }]);
     setNewTask("");
   };
 
-  const toggleTaskSelection = (id) => {
-    if (selectedTasks.includes(id)) {
-      setSelectedTasks(prev => prev.filter(taskId => taskId !== id));
-    } else {
-      setSelectedTasks(prev => [...prev, id]);
-    }
+  const startEdit = (task) => {
+    setEditId(task.id);
+    setEditText(task.text);
   };
 
-  const markSelectedAsCompleted = () => {
-    setTasks(prev =>
-      prev.map(task =>
-        selectedTasks.includes(task.id) ? { ...task, completed: true } : task
-      )
-    );
-    setSelectedTasks([]);
+  const saveEdit = (id) => {
+    const text = editText.trim();
+    if (!text) return;
+    setTasks(prev => prev.map(t => (t.id === id ? { ...t, text } : t)));
+    setEditId(null);
+    setEditText("");
   };
 
-  const removeSelectedTasks = () => {
-    setTasks(prev => prev.filter(task => !selectedTasks.includes(task.id)));
-    setSelectedTasks([]);
+  const cancelEdit = () => {
+    setEditId(null);
+    setEditText("");
+  };
+
+  const completeTask = (id) => {
+    setTasks(prev => prev.map(t => (t.id === id ? { ...t, completed: true } : t)));
+  };
+
+  const deleteTask = (id) => {
+    setTasks(prev => prev.filter(t => t.id !== id));
   };
 
   const goToHome = () => navigate("/");
 
-  const pendingTasks = tasks.filter(task => !task.completed);
-  const completedTasks = tasks.filter(task => task.completed);
+  const pendingTasks = tasks.filter(t => !t.completed);
+  const completedTasks = tasks.filter(t => t.completed);
 
-  const TaskList = ({ tasks, title, emptyMessage }) => (
+  const TaskList = ({ items, title, emptyMessage, showComplete }) => (
     <div className="task-section">
       <h3 className="section-title">{title}</h3>
-      {tasks.length === 0 ? (
+      {items.length === 0 ? (
         <p className="empty-message">{emptyMessage}</p>
       ) : (
         <ul className="todo-list">
-          {tasks.map(task => (
+          {items.map(task => (
             <li key={task.id} className={task.completed ? "completed" : ""}>
-              <input
-                type="checkbox"
-                checked={selectedTasks.includes(task.id)}
-                onChange={() => toggleTaskSelection(task.id)}
-              />
-              <span>{task.text}</span>
+              <div className="task-row">
+                <div className="task-text">
+                  {editId === task.id ? (
+                    <div className="edit-row">
+                      <input
+                        className="edit-input"
+                        value={editText}
+                        onChange={e => setEditText(e.target.value)}
+                        onKeyDown={e => {
+                          if (e.key === "Enter") saveEdit(task.id);
+                          if (e.key === "Escape") cancelEdit();
+                        }}
+                        autoFocus
+                      />
+                      <button className="mini-btn save" onClick={() => saveEdit(task.id)}>💾</button>
+                      <button className="mini-btn cancel" onClick={cancelEdit}>❌</button>
+                    </div>
+                  ) : (
+                    <span>{task.text}</span>
+                  )}
+                </div>
+
+                {editId !== task.id && (
+                  <div className="task-actions">
+                    {!task.completed && (
+                      <>
+                        {/* Ícones substituindo os botões */}
+                        <button className="edit-btn" onClick={() => startEdit(task)}>
+                          ✏️
+                        </button>
+                        {showComplete && (
+                          <button className="complete-btn" onClick={() => completeTask(task.id)}>
+                            ✅
+                          </button>
+                        )}
+                        <button className="delete-btn" onClick={() => deleteTask(task.id)}>
+                          🗑️
+                        </button>
+                      </>
+                    )}
+                    {task.completed && (
+                      <button className="delete-btn" onClick={() => deleteTask(task.id)}>🗑️</button>
+                    )}
+                  </div>
+                )}
+              </div>
             </li>
           ))}
         </ul>
@@ -82,6 +124,8 @@ export default function TodoIten() {
         <div className="image-placeholder">
           <img src={Foto} alt="Banner Todo" className="todo-banner" />
         </div>
+        {/* Botão movido para aqui - abaixo da imagem */}
+        <button className="back-top-btn" onClick={goToHome}>⬅️ Voltar ao Início</button>
       </div>
 
       <div className="todo-right">
@@ -94,32 +138,25 @@ export default function TodoIten() {
               placeholder="Digite uma tarefa..."
               value={newTask}
               onChange={e => setNewTask(e.target.value)}
-              onKeyPress={e => e.key === 'Enter' && addTask()}
+              onKeyDown={e => e.key === 'Enter' && addTask()}
             />
-            <button className="add-btn" onClick={addTask}>➕ Adicionar</button>
+            <button className="add-btn" onClick={addTask}>Adicionar</button>
           </div>
         </div>
 
         <div className="tasks-container">
-          <TaskList tasks={pendingTasks} title="📌 Tarefas Pendentes" emptyMessage="Nenhuma tarefa pendente! 🎉" />
-          <TaskList tasks={completedTasks} title="✅ Tarefas Finalizadas" emptyMessage="Nenhuma tarefa concluída ainda." />
-        </div>
-
-        <div className="button-group">
-          <button
-            className="complete-btn"
-            onClick={markSelectedAsCompleted}
-            disabled={selectedTasks.length === 0}
-          >
-            ✅ Marcar Feita
-          </button>
-          <button
-            className="delete-btn"
-            onClick={removeSelectedTasks}
-            disabled={selectedTasks.length === 0}
-          >
-            🗑️ Excluir
-          </button>
+          <TaskList
+            items={pendingTasks}
+            title="📌 Tarefas Pendentes"
+            emptyMessage="Nenhuma tarefa pendente! 🎉"
+            showComplete
+          />
+          <TaskList
+            items={completedTasks}
+            title="✅ Tarefas Finalizadas"
+            emptyMessage="Nenhuma tarefa concluída ainda."
+            showComplete={false}
+          />
         </div>
 
         <div className="stats">
@@ -127,8 +164,6 @@ export default function TodoIten() {
           <span className="stat-item">Pendentes: <strong>{pendingTasks.length}</strong></span>
           <span className="stat-item">Concluídas: <strong>{completedTasks.length}</strong></span>
         </div>
-
-        <button className="back-top-btn" onClick={goToHome}>⬅️ Voltar ao Início</button>
       </div>
     </div>
   );

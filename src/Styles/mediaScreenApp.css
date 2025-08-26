@@ -65,13 +65,13 @@
   }
   
   .todo-title {
-    margin-top: 31vh;
+    margin-top: 28vh;
     font-size: 24px;
     left: 46%;
   }
   
   .botao1 {
-    margin-top: 27vh;
+    margin-top: 20vh;
     width: 60%;
     left: 55%;
   }
@@ -79,7 +79,7 @@
   .top-icon {
     left: 25%;
     font-size: 25vh;
-    top: 63vh;
+    top: 60vh;
   }
 }
 
